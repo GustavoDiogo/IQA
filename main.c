@@ -4,15 +4,17 @@
 #define e 2.71828182845904523536
 #define pi 3.14159265358979323846
 
+double x[9];
+
 double calculo_OD(double ODinput)
 {
 	double Cs,T,CCI,H,qs;
 	printf("Digite a Temperatura(ºC)\n");
-	scanf("%lf\n",&T);
+	scanf("%lf",&T);
 	printf("Digite a Concentração de Cloreto(mg/L)\n");
-	scanf("%lf\n",&CCI);
+	scanf("%lf",&CCI);
 	printf("Digite a Altitude(m)\n");
-	scanf("%lf\n",&H);
+	scanf("%lf",&H);
 	Cs =((14.2)*pow(e,-0.0212*T)-(0.0016*CCI)*pow(e,-0.0264*T))*(0.994-(0.0001042*H));
 	printf("A concentração de saturação de oxigênio é %lf\n",Cs);
 
@@ -36,6 +38,7 @@ double calculo_OD(double ODinput)
 	}
 	else
 		qs = 47.0;
+
 
 	return(qs<0) ? 0.1 : qs;
 }
@@ -125,40 +128,115 @@ double calculo_ST(double STinput)
 		qs = 30.0;
 	return qs;
 }
-
-int main()
+double resultados(int cont)
 {
-	double x[9];
-	printf("Digite a quantidade de oxigênio dissolvido(mg/L)\n");
-	scanf("%lf\n", &x[0]);
-	calculo_OD(x[0]);
-	printf("Digite a concentração de Coliformes Fecais(NMP/100mL)\n");
-	scanf("%lf\n", &x[1]);
-	calculo_CF(x[1]);
-	printf("Digite a concentração do pH\n");
-	scanf("%lf\n", &x[2]);
-	calculo_PH(x[2]);
-	printf("Digite a concentração da Demanda Bioquímica de Oxigênio(mg/L)\n");
-	scanf("%lf\n", &x[3]);
-	calculo_DBO(x[3]);
-	printf("Digite a concentração de Nitratos(mg/L)\n");
-	scanf("%lf\n",&x[4]);
-	calculo_NO3(x[4]);
-	printf("Digite a concentração de Fosfatos(mg/L)\n");
-	scanf("%lf\n",&x[5]);
-	calculo_PO4(x[5]);
-	printf("Digite a Turbidez(NTU)\n");
-	scanf("%lf\n",&x[6]);
-	calculo_TU(x[6]);
-	printf("Digite a concentração de Sólidos Totais(mg/L)\n");
-	scanf("%lf\n",&x[7]);
-	calculo_ST(x[7]);
-	printf("Digite a variação da Temperatura(ºC)\n");
-	scanf("%lf\n",&x[8]);
-	calculo_VT(x[8]);
+	double resultados;
 
+	if(cont == 0)
+	{
+	resultados = calculo_OD(x[cont]);
+	}
+	else if(cont == 1)
+	{
+	resultados = calculo_CF(x[cont]);
+	}
+	else if (cont == 2)
+	{
+	resultados = calculo_PH(x[cont]);
+	}
+	else if (cont == 3)
+	{
+	resultados = calculo_DBO(x[cont]);
+	}
+	else if (cont == 4)
+	{
+	resultados = calculo_NO3(x[cont]);
+	}
+	else if (cont == 5)
+	{
+	resultados = calculo_PO4(x[cont]);
+	}
+	else if (cont == 6)
+	{
+	resultados = calculo_TU(x[cont]);
+	}
+	else if (cont == 7)
+	{
+	resultados = calculo_ST(x[cont]);
+	}
+	else if (cont == 8)
+	{
+	resultados = calculo_VT(x[cont]);
+	}
+	return resultados;
+}
+void qualidade(double Qinput)
+{
+	if(Qinput<=19)
+	{
+		printf("%lf - Péssima\n", Qinput);
+	}
+	else if(Qinput<=36)
+	{
+		printf("%lf - Ruim\n", Qinput);
+	}
+	else if(Qinput<=51)
+	{
+		printf("%lf - Regular\n", Qinput);
+	}
+	else if (Qinput<=79)
+	{
+		printf("%lf - Boa\n", Qinput);
+	}
+	else
+	{
+		printf("%lf - Ótima\n", Qinput);
+	}
+}
+void IQA()
+{
+	double iqa2 = 1, produtorio;
+	double pesos[9] = {0.17, 0.15, 0.12, 0.1, 0.1, 0.1, 0.1, 0.08, 0.08};
+	int i;
 
-
-	return 0;
+	for (i = 0; i < 9; i++)
+	{
+		produtorio = pow(resultados(i), pesos[i]);
+		iqa2 *= produtorio;
+	}
+	qualidade(iqa2);
 }
 
+int main(void)
+{
+	
+	printf("Digite a quantidade de oxigênio dissolvido(mg/L)\n");
+	scanf("%lf", &x[0]);
+	calculo_OD(x[0]);
+	printf("Digite a concentração de Coliformes Fecais(NMP/100mL)\n");
+	scanf("%lf", &x[1]);
+	calculo_CF(x[1]);
+	printf("Digite a concentração do pH\n");
+	scanf("%lf", &x[2]);
+	calculo_PH(x[2]);
+	printf("Digite a concentração da Demanda Bioquímica de Oxigênio(mg/L)\n");
+	scanf("%lf", &x[3]);
+	calculo_DBO(x[3]);
+	printf("Digite a concentração de Nitratos(mg/L)\n");
+	scanf("%lf",&x[4]);
+	calculo_NO3(x[4]);
+	printf("Digite a concentração de Fosfatos(mg/L)\n");
+	scanf("%lf",&x[5]);
+	calculo_PO4(x[5]);
+	printf("Digite a Turbidez(NTU)\n");
+	scanf("%lf",&x[6]);
+	calculo_TU(x[6]);
+	printf("Digite a concentração de Sólidos Totais(mg/L)\n");
+	scanf("%lf",&x[7]);
+	calculo_ST(x[7]);
+	printf("Digite a variação da Temperatura(ºC)\n");
+	scanf("%lf",&x[8]);
+	calculo_VT(x[8]);
+	IQA();
+
+}
