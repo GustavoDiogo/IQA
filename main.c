@@ -129,33 +129,33 @@ double calculo_ST(double STinput)
 int main()
 {
 	double x[9];
-	printf("Digite a quantidade de oxigênio dissolvido\n");
+	printf("Digite a quantidade de oxigênio dissolvido(mg/L)\n");
 	scanf("%lf\n", &x[0]);
 	calculo_OD(x[0]);
-	printf("Digite a concentração de Coliformes Fecais\n");
+	printf("Digite a concentração de Coliformes Fecais(NMP/100mL)\n");
 	scanf("%lf\n", &x[1]);
 	calculo_CF(x[1]);
 	printf("Digite a concentração do pH\n");
 	scanf("%lf\n", &x[2]);
 	calculo_PH(x[2]);
-	printf("Digite a concentração da Demanda Bioquímica de Oxigênio\n");
+	printf("Digite a concentração da Demanda Bioquímica de Oxigênio(mg/L)\n");
 	scanf("%lf\n", &x[3]);
 	calculo_DBO(x[3]);
-	printf("Digite a variação da Temperatura\n");
+	printf("Digite a concentração de Nitratos(mg/L)\n");
 	scanf("%lf\n",&x[4]);
-	calculo_VT(x[4]);
-	printf("Digite a concentração de Nitratos\n");
+	calculo_NO3(x[4]);
+	printf("Digite a concentração de Fosfatos(mg/L)\n");
 	scanf("%lf\n",&x[5]);
-	calculo_NO3(x[5]);
-	printf("Digite a concentração de Fosfatos\n");
+	calculo_PO4(x[5]);
+	printf("Digite a Turbidez(NTU)\n");
 	scanf("%lf\n",&x[6]);
-	calculo_PO4(x[6]);
-	printf("Digite a Turbidez\n");
+	calculo_TU(x[6]);
+	printf("Digite a concentração de Sólidos Totais(mg/L)\n");
 	scanf("%lf\n",&x[7]);
-	calculo_TU(x[7]);
-	printf("Digite a concentração de sólidos totais\n");
+	calculo_ST(x[7]);
+	printf("Digite a variação da Temperatura(ºC)\n");
 	scanf("%lf\n",&x[8]);
-	calculo_ST(x[8]);
+	calculo_VT(x[8]);
 
 
 
