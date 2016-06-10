@@ -5,34 +5,17 @@
 #define pi 3.14159265358979323846
 
 double x[9];
-
-double ler_od()
-{
-	printf("Calculos necessários para o Oxigênio Dissolvido:\n");
-	double T,CCI,H;
-	printf("Digite a Temperatura(ºC)\n");
-	scanf("%lf",&T);
-	printf("Digite a Concentração de Cloreto(mg/L)\n");
-	scanf("%lf",&CCI);
-	printf("Digite a Altitude(m)\n");
-	scanf("%lf",&H);
-
-	return 0;
-}
+double T,CCI,H;
 
 
 double calculo_OD(double ODinput)
 {
 
 	double Cs,qs;
-	double T = ler_od(&T);
-	double CCI = ler_od(&CCI);
-	double H = ler_od(&H);
 	Cs =((14.2)*pow(e,-0.0212*T)-(0.0016*CCI)*pow(e,-0.0264*T))*(0.994-(0.0001042*H));
-	printf("A concentração de saturação de oxigênio é %lf\n",Cs);
-
+	
 	double porcentagem_OD = (ODinput/Cs)*100;
-	printf("A porcentagem de oxigênio é %lf\n", porcentagem_OD);
+	
 
 	if(porcentagem_OD<= 100)
 	{
@@ -187,23 +170,23 @@ void qualidade(double Qinput)
 {
 	if(Qinput<=19)
 	{
-		printf("%lf - Péssima\n", Qinput);
+		printf("IQA = %3.lf - Péssima\n", Qinput);
 	}
 	else if(Qinput<=36)
 	{
-		printf("%lf - Ruim\n", Qinput);
+		printf("IQA = %3.lf - Ruim\n", Qinput);
 	}
 	else if(Qinput<=51)
 	{
-		printf("%lf - Regular\n", Qinput);
+		printf("IQA = %3.lf - Regular\n", Qinput);
 	}
 	else if (Qinput<=79)
 	{
-		printf("%lf - Boa\n", Qinput);
+		printf("IQA = %3.lf - Boa\n", Qinput);
 	}
 	else
 	{
-		printf("%lf - Ótima\n", Qinput);
+		printf("IQA = %3.lf - Ótima\n", Qinput);
 	}
 }
 void IQA()
@@ -222,7 +205,15 @@ void IQA()
 
 int main(void)
 {	
-	ler_od();
+	printf("Calculos necessários para o Oxigênio Dissolvido:\n");
+	double T,CCI,H;
+	printf("Digite a Temperatura(ºC)\n");
+	scanf("%lf",&T);
+	printf("Digite a Concentração de Cloreto(mg/L)\n");
+	scanf("%lf",&CCI);
+	printf("Digite a Altitude(m)\n");
+	scanf("%lf",&H);
+
 	printf("Digite a quantidade de oxigênio dissolvido(mg/L)\n");
 	scanf("%lf", &x[0]);
 	calculo_OD(x[0]);
