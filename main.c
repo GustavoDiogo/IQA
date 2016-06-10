@@ -6,15 +6,11 @@
 
 double x[9];
 
+
 double calculo_OD(double ODinput)
 {
-	double Cs,T,CCI,H,qs;
-	printf("Digite a Temperatura(ºC)\n");
-	scanf("%lf",&T);
-	printf("Digite a Concentração de Cloreto(mg/L)\n");
-	scanf("%lf",&CCI);
-	printf("Digite a Altitude(m)\n");
-	scanf("%lf",&H);
+
+	double Cs,qs;
 	Cs =((14.2)*pow(e,-0.0212*T)-(0.0016*CCI)*pow(e,-0.0264*T))*(0.994-(0.0001042*H));
 	printf("A concentração de saturação de oxigênio é %lf\n",Cs);
 
@@ -130,7 +126,7 @@ double calculo_ST(double STinput)
 }
 double resultados(int cont)
 {
-	double resultados;
+	double resultados = 0;
 
 	if(cont == 0)
 	{
@@ -150,23 +146,23 @@ double resultados(int cont)
 	}
 	else if (cont == 4)
 	{
-	resultados = calculo_NO3(x[cont]);
+	resultados = calculo_VT(x[cont]);
 	}
 	else if (cont == 5)
 	{
-	resultados = calculo_PO4(x[cont]);
+	resultados = calculo_NO3(x[cont]);
 	}
 	else if (cont == 6)
 	{
-	resultados = calculo_TU(x[cont]);
+	resultados = calculo_PO4(x[cont]);
 	}
 	else if (cont == 7)
 	{
-	resultados = calculo_ST(x[cont]);
+	resultados = calculo_TU(x[cont]);
 	}
 	else if (cont == 8)
 	{
-	resultados = calculo_VT(x[cont]);
+	resultados = calculo_ST(x[cont]);
 	}
 	return resultados;
 }
@@ -208,8 +204,16 @@ void IQA()
 }
 
 int main(void)
-{
-	
+{	
+	printf("Calculos necessários para o Oxigênio Dissolvido:\n");
+	double T,CCI,H;
+	printf("Digite a Temperatura(ºC)\n");
+	scanf("%lf",&T);
+	printf("Digite a Concentração de Cloreto(mg/L)\n");
+	scanf("%lf",&CCI);
+	printf("Digite a Altitude(m)\n");
+	scanf("%lf",&H);
+
 	printf("Digite a quantidade de oxigênio dissolvido(mg/L)\n");
 	scanf("%lf", &x[0]);
 	calculo_OD(x[0]);
@@ -222,21 +226,22 @@ int main(void)
 	printf("Digite a concentração da Demanda Bioquímica de Oxigênio(mg/L)\n");
 	scanf("%lf", &x[3]);
 	calculo_DBO(x[3]);
-	printf("Digite a concentração de Nitratos(mg/L)\n");
-	scanf("%lf",&x[4]);
-	calculo_NO3(x[4]);
-	printf("Digite a concentração de Fosfatos(mg/L)\n");
-	scanf("%lf",&x[5]);
-	calculo_PO4(x[5]);
-	printf("Digite a Turbidez(NTU)\n");
-	scanf("%lf",&x[6]);
-	calculo_TU(x[6]);
-	printf("Digite a concentração de Sólidos Totais(mg/L)\n");
-	scanf("%lf",&x[7]);
-	calculo_ST(x[7]);
 	printf("Digite a variação da Temperatura(ºC)\n");
+	scanf("%lf",&x[4]);
+	calculo_VT(x[4]);
+	printf("Digite a concentração de Nitratos(mg/L)\n");
+	scanf("%lf",&x[5]);
+	calculo_NO3(x[5]);
+	printf("Digite a concentração de Fosfatos(mg/L)\n");
+	scanf("%lf",&x[6]);
+	calculo_PO4(x[6]);
+	printf("Digite a Turbidez(NTU)\n");
+	scanf("%lf",&x[7]);
+	calculo_TU(x[7]);
+	printf("Digite a concentração de Sólidos Totais(mg/L)\n");
 	scanf("%lf",&x[8]);
-	calculo_VT(x[8]);
+	calculo_ST(x[8]);
+
 	IQA();
 
 }
