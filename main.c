@@ -6,11 +6,28 @@
 
 double x[9];
 
+double ler_od()
+{
+	printf("Calculos necessários para o Oxigênio Dissolvido:\n");
+	double T,CCI,H;
+	printf("Digite a Temperatura(ºC)\n");
+	scanf("%lf",&T);
+	printf("Digite a Concentração de Cloreto(mg/L)\n");
+	scanf("%lf",&CCI);
+	printf("Digite a Altitude(m)\n");
+	scanf("%lf",&H);
+
+	return 0;
+}
+
 
 double calculo_OD(double ODinput)
 {
 
 	double Cs,qs;
+	double T = ler_od(&T);
+	double CCI = ler_od(&CCI);
+	double H = ler_od(&H);
 	Cs =((14.2)*pow(e,-0.0212*T)-(0.0016*CCI)*pow(e,-0.0264*T))*(0.994-(0.0001042*H));
 	printf("A concentração de saturação de oxigênio é %lf\n",Cs);
 
@@ -205,15 +222,7 @@ void IQA()
 
 int main(void)
 {	
-	printf("Calculos necessários para o Oxigênio Dissolvido:\n");
-	double T,CCI,H;
-	printf("Digite a Temperatura(ºC)\n");
-	scanf("%lf",&T);
-	printf("Digite a Concentração de Cloreto(mg/L)\n");
-	scanf("%lf",&CCI);
-	printf("Digite a Altitude(m)\n");
-	scanf("%lf",&H);
-
+	ler_od();
 	printf("Digite a quantidade de oxigênio dissolvido(mg/L)\n");
 	scanf("%lf", &x[0]);
 	calculo_OD(x[0]);
