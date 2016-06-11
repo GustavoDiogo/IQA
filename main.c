@@ -207,8 +207,9 @@ void IQA()
 
 int main(void)
 {	
-	printf("Calculos necessários para o Oxigênio Dissolvido:\n");
-	printf("Digite a Temperatura(ºC)\n");
+	printf("Iniciando o cálculo de concentração de saturação de oxigênio:\n Os valores padrões para seguir a planilha são:\n Variação da Temperatura(Coluna F) = Temperatura atual\n Concentração de Cloreto = 9.09\n Altitude = 852 metros\n ");
+	printf("\n");
+	printf("Digite a Temperatura atual da água(ºC)\n");
 	scanf("%lf",&z[0]);
 	printf("Digite a Concentração de Cloreto(mg/L)\n");
 	scanf("%lf",&z[1]);
