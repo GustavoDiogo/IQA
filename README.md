@@ -19,6 +19,6 @@ Para executar o programa basta abrir o executável **main.exe**.
 
   Concluindo os passos anteriores, para executar o programa ainda no terminal, digite **./main** e preencha as informações necessárias para se calcular o IQA.
   
-####Referências:
+ ####Referências:
   
-https://help.ubuntu.com/community/InstallingCompilers
+ https://help.ubuntu.com/community/InstallingCompilers
