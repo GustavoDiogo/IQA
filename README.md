@@ -15,7 +15,7 @@
   Após a instalação do compilador gcc, o próximo passo é instalar o GTK+3 utilizando o comando:
   > sudo apt-get install libgtk-3-dev
   
-  Entre na pasta **gtk** deste repositório utilizando o comando **cd**(exemplo: cd Desktop\bccIQA\gtk), estando dentro da pasta digite 
+  Entre na pasta **gtk** deste repositório utilizando o comando **cd**(exemplo: cd Desktop\bccIQA\gtk), estando dentro da pasta digite: 
   > gcc -o CalculadoraIQA main.c **`**pkg-config --cflags --libs gtk+-3.0**`** -export-dynamic -lm
   
   Por fim, digite ./CalculadoraIQA e preencha os valores adequados de acordo com a planilha localizada neste repositório.
