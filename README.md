@@ -18,7 +18,7 @@
   Entre na pasta **gtk** deste repositório utilizando o comando **cd**(exemplo: cd Desktop\bccIQA\gtk), estando dentro da pasta digite: 
   > gcc -o CalculadoraIQA main.c **`**pkg-config --cflags --libs gtk+-3.0**`** -export-dynamic -lm
   
-  Por fim, digite ./CalculadoraIQA e preencha os valores adequados de acordo com a planilha localizada neste repositório.
+  Por fim, digite **./CalculadoraIQA** e preencha os valores adequados de acordo com a planilha localizada neste repositório.
 
 - ######Sem interface gráfica:
   Primeiramente é necessário ter o compilador gcc instaldo, caso não tenha, abra o terminal e digite os seguintes códigos:
