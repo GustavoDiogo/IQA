@@ -25,18 +25,6 @@ double z[3];
     GtkWidget       *st;
     GtkWidget       *result;
 
-
-    double calculo_OD(double ODinput);
-	double calculo_CF(double CFinput);
-	double calculo_Ph(double pHinput);
-	double calculo_DBO(double DBOinput);
-	double calculo_TU(double Tuinput);
-	double calculo_ST(double STinput);
-	double calculo_VT(double VTinput);
-	double calculo_NO3(double NO3input);
-	double calculo_PO4(double PO4input);
-
-
 double calculo_OD(double ODinput)
 {
 
@@ -199,7 +187,7 @@ double resultados(int cont)
 }
 void qualidade(double Qinput)
 {
-	char s[30];
+	char s[100];
 
 
 	if(Qinput<=19)
@@ -227,7 +215,7 @@ void qualidade(double Qinput)
 		sprintf(s, "%s", "Otima");
 		printf("IQA = %.2lf - Ótima\n", Qinput);
 	}
-	char resultado[30];
+	char resultado[100];
   	sprintf(resultado, "%.2lf - %s", Qinput, s);
   	gtk_label_set_text(GTK_LABEL(result), resultado);
 }
@@ -248,63 +236,49 @@ void IQA()
 void on_button1_clicked (GtkButton *button, gpointer data)
 {
   char s[1000];
-  
- 	
-  	printf("Iniciando o cálculo de concentração de saturação de oxigênio:\n Os valores padrões para seguir a planilha são:\n Variação da Temperatura(Coluna F) = Temperatura atual\n Concentração de Cloreto = 9.09\n Altitude = 852 metros\n ");
-	printf("\n");
-	printf("Digite a Temperatura atual da água(ºC)\n");
+  //strod transfoma string em double
+  	
 	z[0] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(t)));
 	z[0] = strtod(s, NULL);
 	
-	printf("Digite a Concentração de Cloreto(mg/L)\n");
 	z[1] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(cs)));
 	z[1] = strtod(s, NULL);
 	
-	printf("Digite a Altitude(m)\n");
 	z[2] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(h)));
 	z[2] = strtod(s, NULL);
 
-	printf("Digite a quantidade de Oxigênio Dissolvido(mg/L)\n");
 	x[0] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(od)));
 	x[0] = strtod(s, NULL);
 	calculo_OD(x[0]);
 
-	printf("Digite a concentração de Coliformes Fecais(NMP/100mL)\n");
 	x[1] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(cf)));
 	x[1] = strtod(s, NULL);
 	calculo_CF(x[1]);
 
-	printf("Digite a concentração do pH\n");
 	x[2] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(ph)));
 	x[2] = strtod(s, NULL);
 	calculo_PH(x[2]);
 	
-	printf("Digite a concentração da Demanda Bioquímica de Oxigênio(mg/L)\n");
 	x[3] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(dbo)));
 	x[3] = strtod(s, NULL);
 	calculo_DBO(x[3]);
 
-	printf("Digite a variação da Temperatura(ºC)\n");
 	x[4] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(vt)));
 	x[4] = strtod(s, NULL);
 	calculo_VT(x[4]);
 
-	printf("Digite a concentração de Nitratos(mg/L)\n");
 	x[5] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(no3)));
 	x[5] = strtod(s, NULL);
 	calculo_NO3(x[5]);
 
-	printf("Digite a concentração de Fosfatos(mg/L)\n");
 	x[6] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(po4)));
 	x[6] = strtod(s, NULL);
 	calculo_PO4(x[6]);
 
-	printf("Digite a Turbidez(NTU)\n");
 	x[7] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(tu)));
 	x[7] = strtod(s, NULL);
 	calculo_TU(x[7]);
 
-	printf("Digite a concentração de Sólidos Totais(mg/L)\n");
 	x[8] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(st)));
 	x[8] = strtod(s, NULL);
 	calculo_ST(x[8]);
@@ -316,6 +290,8 @@ void on_button1_clicked (GtkButton *button, gpointer data)
 
 int main(int argc, char *argv[])
 {
+	printf("Os valores padrões para seguir a planilha são:\n Variação da Temperatura(Coluna F) = Temperatura atual\n Concentração de Cloreto = 9.09\n Altitude = 852 metros\n ");
+	printf("\n");
 
 	GObject *button_calculate;
     
@@ -349,8 +325,6 @@ int main(int argc, char *argv[])
 
     gtk_widget_show(window);                
     gtk_main();
-
-     
 
     return 0;
 }
