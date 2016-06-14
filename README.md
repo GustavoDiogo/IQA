@@ -12,8 +12,11 @@
   >  4.  gcc -v
   >  5.  make -v
 
-  Após a instalação do compilador gcc, o próximo passo é instalar o GTK+3 utilizando o comando:
+  Após a instalação do compilador gcc, o próximo passo é instalar o **GTK+3** utilizando o comando:
+ 
+  OBS: Para evitar problemas, instale o **glade** pois a interface se encontra em **.xml**.
   > sudo apt-get install libgtk-3-dev
+  > sudo apt-get install glade
   
   Entre na pasta **gtk** deste repositório utilizando o comando **cd**(exemplo: cd Desktop\bccIQA\gtk), estando dentro da pasta digite: 
   > gcc -o CalculadoraIQA main.c **`**pkg-config --cflags --libs gtk+-3.0**`** -export-dynamic -lm
