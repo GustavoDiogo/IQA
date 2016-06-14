@@ -25,6 +25,7 @@ double z[3];
     GtkWidget       *st;
     GtkWidget       *result;
 
+
     double calculo_OD(double ODinput);
 	double calculo_CF(double CFinput);
 	double calculo_Ph(double pHinput);
@@ -35,43 +36,6 @@ double z[3];
 	double calculo_NO3(double NO3input);
 	double calculo_PO4(double PO4input);
 
-
-/*char conversor(void){
-	sprintf(conversor, "%.3lf", z[0]);
-    gtk_entry_set_text(GTK_ENTRY(t), conversor);
-    sprintf(conversor, "%.3lf", z[1]);
-    gtk_entry_set_text(GTK_ENTRY(cs), conversor);
-    sprintf(conversor, "%.3lf", z[2]);
-    gtk_entry_set_text(GTK_ENTRY(h), conversor);
-
-	sprintf(conversor, "%.3lf", x[0]);
-    gtk_entry_set_text(GTK_ENTRY(od), conversor);
-    //CF
-    sprintf(conversor, "%.3lf", x[1]);
-    gtk_entry_set_text(GTK_ENTRY(cf), conversor);
-    //pH
-    sprintf(conversor, "%.3lf", x[2]);
-    gtk_entry_set_text(GTK_ENTRY(ph), conversor);
-    //DBO
-    sprintf(conversor, "%.3lf", x[3]);
-    gtk_entry_set_text(GTK_ENTRY(dbo), conversor);
-    //Temp
-    sprintf(conversor, "%.3lf", x[4]);
-    gtk_entry_set_text(GTK_ENTRY(vt), conversor);
-    //No4
-    sprintf(conversor, "%.3lf", x[5]);
-    gtk_entry_set_text(GTK_ENTRY(no3), conversor);
-    //Fosfato
-    sprintf(conversor, "%.3lf", x[6]);
-    gtk_entry_set_text(GTK_ENTRY(po4), conversor);
-    //Turbidez
-    sprintf(conversor, "%.3lf", x[7]);
-    gtk_entry_set_text(GTK_ENTRY(tu), conversor);
-    //Residuos
-    sprintf(conversor, "%.3lf", x[8]);
-    gtk_entry_set_text(GTK_ENTRY(st), conversor);
-
-}*/
 
 double calculo_OD(double ODinput)
 {
@@ -283,80 +247,72 @@ void IQA()
 
 void on_button1_clicked (GtkButton *button, gpointer data)
 {
-  char s[100];
+  char s[1000];
   
-
-  int i=0;
+ 	
   	printf("Iniciando o cálculo de concentração de saturação de oxigênio:\n Os valores padrões para seguir a planilha são:\n Variação da Temperatura(Coluna F) = Temperatura atual\n Concentração de Cloreto = 9.09\n Altitude = 852 metros\n ");
 	printf("\n");
 	printf("Digite a Temperatura atual da água(ºC)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(t)));
+	z[0] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(t)));
+	z[0] = strtod(s, NULL);
+	
 	printf("Digite a Concentração de Cloreto(mg/L)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(cs)));
+	z[1] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(cs)));
+	z[1] = strtod(s, NULL);
+	
 	printf("Digite a Altitude(m)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(h)));
+	z[2] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(h)));
+	z[2] = strtod(s, NULL);
 
-
-    for(i=0;i<9;i++)
-  	{
-	if(x[i]=0)
-	{
 	printf("Digite a quantidade de Oxigênio Dissolvido(mg/L)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(od)));
+	x[0] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(od)));
+	x[0] = strtod(s, NULL);
 	calculo_OD(x[0]);
-	}
-	else if(x[i]=1)
-	{
+
 	printf("Digite a concentração de Coliformes Fecais(NMP/100mL)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(cf)));
+	x[1] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(cf)));
+	x[1] = strtod(s, NULL);
 	calculo_CF(x[1]);
-	}
-	else if(x[i]=2)
-	{
+
 	printf("Digite a concentração do pH\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(ph)));
+	x[2] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(ph)));
+	x[2] = strtod(s, NULL);
 	calculo_PH(x[2]);
-	}
-	else if(x[i]=3)
-	{
+	
 	printf("Digite a concentração da Demanda Bioquímica de Oxigênio(mg/L)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(dbo)));
+	x[3] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(dbo)));
+	x[3] = strtod(s, NULL);
 	calculo_DBO(x[3]);
-	}
-	else if(x[i]=4)
-	{
+
 	printf("Digite a variação da Temperatura(ºC)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(vt)));
+	x[4] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(vt)));
+	x[4] = strtod(s, NULL);
 	calculo_VT(x[4]);
-	}	
-	else if(x[i]=5)
-	{
+
 	printf("Digite a concentração de Nitratos(mg/L)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(no3)));
+	x[5] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(no3)));
+	x[5] = strtod(s, NULL);
 	calculo_NO3(x[5]);
-	}
-	else if(x[i]=6)
-	{
+
 	printf("Digite a concentração de Fosfatos(mg/L)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(po4)));
+	x[6] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(po4)));
+	x[6] = strtod(s, NULL);
 	calculo_PO4(x[6]);
-	}
-	else if(x[i]=7)
-	{
+
 	printf("Digite a Turbidez(NTU)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(tu)));
+	x[7] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(tu)));
+	x[7] = strtod(s, NULL);
 	calculo_TU(x[7]);
-	}
-	else if(x[i]=8)
-	{
+
 	printf("Digite a concentração de Sólidos Totais(mg/L)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(st)));
+	x[8] = sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(st)));
+	x[8] = strtod(s, NULL);
 	calculo_ST(x[8]);
-	}
+	
 
-}
 
- 	x[i] = strtod(s, NULL);
+
+ 	//x[i] = strtod(s, NULL);
 
 	IQA();
 
