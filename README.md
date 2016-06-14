@@ -1,4 +1,4 @@
-### Índice de Qualidade da Águas(IQA) - 1º Semestre(2016) BCC Senac.
+### Índice de Qualidade da Água(IQA) - 1º Semestre(2016) BCC Senac.
 ####Linux(somente):
 
 ##### Compilando:
