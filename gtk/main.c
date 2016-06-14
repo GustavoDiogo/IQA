@@ -310,10 +310,6 @@ void on_button1_clicked (GtkButton *button, gpointer data)
 	calculo_ST(x[8]);
 	
 
-
-
- 	//x[i] = strtod(s, NULL);
-
 	IQA();
 
 }
@@ -332,7 +328,7 @@ int main(int argc, char *argv[])
     button_calculate = gtk_builder_get_object (builder, "button1");
     g_signal_connect (button_calculate, "clicked", G_CALLBACK (on_button1_clicked), NULL);
 
-    window = GTK_WIDGET(gtk_builder_get_object(builder, "window1"));
+    window = GTK_WIDGET(gtk_builder_get_object(builder, "Calculadora IQA"));
     gtk_builder_connect_signals(builder, NULL);
 
     t = GTK_WIDGET(gtk_builder_get_object(builder, "entry1"));
@@ -359,7 +355,6 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-// called when window is closed
 void on_window_main_destroy()
 {
     gtk_main_quit();
