@@ -1,7 +1,7 @@
 #include <gtk/gtk.h>
-
-#include<stdio.h>
-#include<math.h>
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
 
 #define e 2.71828182845904523536
 #define pi 3.14159265358979323846
@@ -11,20 +11,67 @@ double z[3];
 
     GtkBuilder      *builder; 
     GtkWidget       *window;
-    GtkWidget       *entry1;
-    GtkWidget       *entry2;
-    GtkWidget       *entry3;
-    GtkWidget       *entry4;
-    GtkWidget       *entry5;
-    GtkWidget       *entry6;
-    GtkWidget       *entry7;
-    GtkWidget       *entry8;
-    GtkWidget       *entry9;
-    GtkWidget       *entry10;
-    GtkWidget       *entry11;
-    GtkWidget       *entry12;
-    GtkWidget       *textview1;
+    GtkWidget       *t;
+    GtkWidget       *cs;
+    GtkWidget       *h;
+    GtkWidget       *od;
+    GtkWidget       *cf;
+    GtkWidget       *ph;
+    GtkWidget       *dbo;
+    GtkWidget       *vt;
+    GtkWidget       *no3;
+    GtkWidget       *po4;
+    GtkWidget       *tu;
+    GtkWidget       *st;
+    GtkWidget       *result;
 
+    double calculo_OD(double ODinput);
+	double calculo_CF(double CFinput);
+	double calculo_Ph(double pHinput);
+	double calculo_DBO(double DBOinput);
+	double calculo_TU(double Tuinput);
+	double calculo_ST(double STinput);
+	double calculo_VT(double VTinput);
+	double calculo_NO3(double NO3input);
+	double calculo_PO4(double PO4input);
+
+
+/*char conversor(void){
+	sprintf(conversor, "%.3lf", z[0]);
+    gtk_entry_set_text(GTK_ENTRY(t), conversor);
+    sprintf(conversor, "%.3lf", z[1]);
+    gtk_entry_set_text(GTK_ENTRY(cs), conversor);
+    sprintf(conversor, "%.3lf", z[2]);
+    gtk_entry_set_text(GTK_ENTRY(h), conversor);
+
+	sprintf(conversor, "%.3lf", x[0]);
+    gtk_entry_set_text(GTK_ENTRY(od), conversor);
+    //CF
+    sprintf(conversor, "%.3lf", x[1]);
+    gtk_entry_set_text(GTK_ENTRY(cf), conversor);
+    //pH
+    sprintf(conversor, "%.3lf", x[2]);
+    gtk_entry_set_text(GTK_ENTRY(ph), conversor);
+    //DBO
+    sprintf(conversor, "%.3lf", x[3]);
+    gtk_entry_set_text(GTK_ENTRY(dbo), conversor);
+    //Temp
+    sprintf(conversor, "%.3lf", x[4]);
+    gtk_entry_set_text(GTK_ENTRY(vt), conversor);
+    //No4
+    sprintf(conversor, "%.3lf", x[5]);
+    gtk_entry_set_text(GTK_ENTRY(no3), conversor);
+    //Fosfato
+    sprintf(conversor, "%.3lf", x[6]);
+    gtk_entry_set_text(GTK_ENTRY(po4), conversor);
+    //Turbidez
+    sprintf(conversor, "%.3lf", x[7]);
+    gtk_entry_set_text(GTK_ENTRY(tu), conversor);
+    //Residuos
+    sprintf(conversor, "%.3lf", x[8]);
+    gtk_entry_set_text(GTK_ENTRY(st), conversor);
+
+}*/
 
 double calculo_OD(double ODinput)
 {
@@ -190,6 +237,7 @@ void qualidade(double Qinput)
 {
 	char s[30];
 
+
 	if(Qinput<=19)
 	{
 		sprintf(s, "%s", "Pessima");
@@ -215,9 +263,9 @@ void qualidade(double Qinput)
 		sprintf(s, "%s", "Otima");
 		printf("IQA = %.2lf - Ótima\n", Qinput);
 	}
-	char result[20];
-  	sprintf(result, "%.2lf - %s", Qinput, s);
-  	gtk_label_set_text(GTK_LABEL(textview1), result);
+	char resultado[30];
+  	sprintf(resultado, "%.2lf - %s", Qinput, s);
+  	gtk_label_set_text(GTK_LABEL(result), resultado);
 }
 void IQA()
 {
@@ -242,70 +290,73 @@ void on_button1_clicked (GtkButton *button, gpointer data)
   	printf("Iniciando o cálculo de concentração de saturação de oxigênio:\n Os valores padrões para seguir a planilha são:\n Variação da Temperatura(Coluna F) = Temperatura atual\n Concentração de Cloreto = 9.09\n Altitude = 852 metros\n ");
 	printf("\n");
 	printf("Digite a Temperatura atual da água(ºC)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(entry1)));
+	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(t)));
 	printf("Digite a Concentração de Cloreto(mg/L)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(entry2)));
+	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(cs)));
 	printf("Digite a Altitude(m)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(entry3)));
-  for(i=0;i<9;i++)
-  {
+	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(h)));
+
+
+    for(i=0;i<9;i++)
+  	{
 	if(x[i]=0)
 	{
 	printf("Digite a quantidade de Oxigênio Dissolvido(mg/L)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(entry4)));
+	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(od)));
 	calculo_OD(x[0]);
 	}
 	else if(x[i]=1)
 	{
 	printf("Digite a concentração de Coliformes Fecais(NMP/100mL)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(entry5)));
+	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(cf)));
 	calculo_CF(x[1]);
 	}
 	else if(x[i]=2)
 	{
 	printf("Digite a concentração do pH\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(entry6)));
+	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(ph)));
 	calculo_PH(x[2]);
 	}
 	else if(x[i]=3)
 	{
 	printf("Digite a concentração da Demanda Bioquímica de Oxigênio(mg/L)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(entry7)));
+	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(dbo)));
 	calculo_DBO(x[3]);
 	}
 	else if(x[i]=4)
 	{
 	printf("Digite a variação da Temperatura(ºC)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(entry8)));
+	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(vt)));
 	calculo_VT(x[4]);
 	}	
 	else if(x[i]=5)
 	{
 	printf("Digite a concentração de Nitratos(mg/L)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(entry9)));
+	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(no3)));
 	calculo_NO3(x[5]);
 	}
 	else if(x[i]=6)
 	{
 	printf("Digite a concentração de Fosfatos(mg/L)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(entry10)));
+	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(po4)));
 	calculo_PO4(x[6]);
 	}
 	else if(x[i]=7)
 	{
 	printf("Digite a Turbidez(NTU)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(entry11)));
+	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(tu)));
 	calculo_TU(x[7]);
 	}
 	else if(x[i]=8)
 	{
 	printf("Digite a concentração de Sólidos Totais(mg/L)\n");
-	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(entry12)));
+	sprintf(s, "%s", gtk_entry_get_text(GTK_ENTRY(st)));
 	calculo_ST(x[8]);
 	}
+
 }
 
-	x[i] = strtod(s, NULL);
+ 	x[i] = strtod(s, NULL);
 
 	IQA();
 
@@ -313,27 +364,36 @@ void on_button1_clicked (GtkButton *button, gpointer data)
 
 int main(int argc, char *argv[])
 {
-    //ARRUMAR ISSO
-	labelTxt = GTK_WIDGET(gtk_builder_get_object(builder, "resposta"));
-    labelOD = GTK_WIDGET(gtk_builder_get_object(builder, "entry1"));
-    labelCF = GTK_WIDGET(gtk_builder_get_object(builder, "entry2"));
-    labelPH = GTK_WIDGET(gtk_builder_get_object(builder, "entry3"));
-    labelDBO = GTK_WIDGET(gtk_builder_get_object(builder, "entry4"));
-    labelTemp = GTK_WIDGET(gtk_builder_get_object(builder, "entry5"));
-    labelNitrogenio = GTK_WIDGET(gtk_builder_get_object(builder, "entry6"));
-    labelFosforo = GTK_WIDGET(gtk_builder_get_object(builder, "entry7"));
-    labelTurbidez = GTK_WIDGET(gtk_builder_get_object(builder, "entry8"));
-    labelResiduos = GTK_WIDGET(gtk_builder_get_object(builder, "entry9"));
+
+	GObject *button_calculate;
+    
 
     gtk_init(&argc, &argv);
 
     builder = gtk_builder_new();
     gtk_builder_add_from_file (builder, "mainui.glade", NULL);
 
+    button_calculate = gtk_builder_get_object (builder, "button1");
+    g_signal_connect (button_calculate, "clicked", G_CALLBACK (on_button1_clicked), NULL);
+
     window = GTK_WIDGET(gtk_builder_get_object(builder, "window1"));
     gtk_builder_connect_signals(builder, NULL);
 
-    g_object_unref(builder);
+    t = GTK_WIDGET(gtk_builder_get_object(builder, "entry1"));
+    cs = GTK_WIDGET(gtk_builder_get_object(builder, "entry2"));
+    h = GTK_WIDGET(gtk_builder_get_object(builder, "entry3"));
+    od = GTK_WIDGET(gtk_builder_get_object(builder, "entry4"));
+    cf = GTK_WIDGET(gtk_builder_get_object(builder, "entry5"));
+    ph = GTK_WIDGET(gtk_builder_get_object(builder, "entry6"));
+    dbo = GTK_WIDGET(gtk_builder_get_object(builder, "entry7"));
+    vt = GTK_WIDGET(gtk_builder_get_object(builder, "entry8"));
+    no3 = GTK_WIDGET(gtk_builder_get_object(builder, "entry9"));
+    po4 = GTK_WIDGET(gtk_builder_get_object(builder, "entry10"));
+    tu = GTK_WIDGET(gtk_builder_get_object(builder, "entry11"));
+    st = GTK_WIDGET(gtk_builder_get_object(builder, "entry12"));
+    result = GTK_WIDGET(gtk_builder_get_object(builder, "resultado"));
+
+    g_object_unref( G_OBJECT( builder ) );
 
     gtk_widget_show(window);                
     gtk_main();
