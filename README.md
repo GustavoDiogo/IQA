@@ -4,7 +4,7 @@
 ##### Compilando:
 
 - ######Juntamente à interface gráfica:
-  Primeiramente é necessário ter o compilador gcc instaldo, caso não tenha, abra o terminal e digite os seguintes códigos:
+  Primeiramente é necessário ter o compilador gcc instalado, caso não tenha, abra o terminal e digite os seguintes códigos:
   
   >  1.  sudo apt-get update 
   >  2.  sudo apt-get upgrade
