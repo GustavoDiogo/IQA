@@ -1,4 +1,7 @@
-### Índice de Qualidade da Água(IQA) - 1º Semestre(2016) BCC Senac.
+## Algoritmos e Programação I: Índice de Qualidade da Água(IQA)
+#### Bacharelado em Ciências da Computação: 1º Semestre(2016)
+A documentação sobre o projeto encontra-se no diretório <b>documentacao/IQA.zip</b>
+
 ####Linux(somente):
 
 ##### Compilando:
